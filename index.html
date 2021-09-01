@@ -13,7 +13,7 @@
 
 <body>
 
-    <section class="justify-content-center m-3">
+    <section class="container justify-content-center m-3">
 
         <div>
             <h2>Search Your Favourite Book</h2>
@@ -22,15 +22,17 @@
         <div class="input-group w-50 h-100">
             <input type="text" id="search-feild" class="form-control" placeholder="Search your book"
                 aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" onclick="searchResult()" id="search-button">Search</button>
+            <button class="btn btn-outline-secondary" type="button" onclick="searchResult()"
+                id="search-button">Search</button>
         </div>
+        <p id="number"></p>
     </section>
 
-    <section>
-<h3>All Details</h3>
-<div id="show-result">
+    <section class="container">
+        <h3>All Details</h3>
+        <div class="row" id="show-result">
 
-</div>
+        </div>
     </section>
 
     <!-- Bootstrap JS Bundle Link -->
