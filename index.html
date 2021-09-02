@@ -17,6 +17,7 @@
     <main>
 
         <!-- <div class="card h-100 w-75 mt-3 details"> -->
+        <!-- search section -->
         <section class="container justify-content-center m-3" id="main-id">
             <div>
                 <h2 class="text-primary fs-3 fw-bolder">Search Your Favourite Book</h2>
@@ -28,13 +29,22 @@
                 <button class="btn btn-outline-white text-light bg-danger" type="button" onclick="searchResult()"
                     id="search-button">Search</button>
             </div>
-            <h3 id="alart-result">Search Result</h3>
-            <p id="number"></p>
-            <p id="error"></p>
-            <p id="emty"></p>
+            <br>
+            <h3 id="alart-result"></h3>
+            <br>
+            <!-- total number of search items -->
+            <p id="total-result" class="text-grey"></p>
         </section>
 
 
+        <!-- error message showing section -->
+        <section class="container mx-auto">
+            <p id="not-find-error" class="text-danger fs-4"></p>
+            <p id="emty-error" class="text-danger fs-4"></p>
+        </section>
+
+
+        <!-- all books details section -->
         <section class="container result-details-section">
             <div class="row" id="show-result">
 
@@ -43,7 +53,6 @@
 
     </main>
 
-    <!-- experimental card -->
 
 
     <!-- Bootstrap JS Bundle Link -->

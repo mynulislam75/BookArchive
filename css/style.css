@@ -1,12 +1,7 @@
-/* .Book-details-container{
-    box-shadow: 10px 10px 8px 10px #888888;
-} */
+
+
 .Book-details-container:hover{
     border:1px solid skyblue;
-}
-
-.details{
-    text-decoration: none;
 }
 
 .result-details-section{

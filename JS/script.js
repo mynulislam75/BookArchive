@@ -1,10 +1,10 @@
 
-//getting search result data
-
+//getting,catching and fetching search input value
 const searchResult = () => {
     const searchFieldInput = document.getElementById('search-feild');
     const searchFieldValue = searchFieldInput.value;
-    // console.log(searchFieldValue)
+
+    //creating dymanic url using search feild input
     const url = ` http://openlibrary.org/search.json?q=${searchFieldValue}`
 
     //fetch data
@@ -14,43 +14,52 @@ const searchResult = () => {
 
     //clear search field input
     searchFieldInput.value = '';
+
     getDiv.innerHTML = '';
+
+    //clear total number of result  
     numberShow.innerText = '';
+
+    //clear nothing found error warning
     errorFound.innerText = '';
-    emtyResult.innerText = '';
-    mainId.style.backgroundColor = ''
+
+    //clear emty search error warning
+    emtySearch.innerText = '';
 }
 
 const getDiv = document.getElementById('show-result')
-const numberShow = document.getElementById('number')
+const numberShow = document.getElementById('total-result')
 const resultShowA = document.getElementById('alart-result')
-const errorFound = document.getElementById('error')
-const emtyResult = document.getElementById('emty')
+const errorFound = document.getElementById('not-find-error')
+const emtySearch = document.getElementById('emty-error')
 const mainId = document.getElementById('main-id')
 
 //getting single data by using forEach loop
-const singleResult = singleData => {
-    if (singleData.num_found === 0 && singleData.q === "") {
-        mainId.style.backgroundColor = "red"
-        emtyResult.innerText = `SEARCH FEILD CANN'T BE EMTY,PLEASE WRITE SOMETHING`
+const singleResult = books => {
+
+    //catching emty search input result error
+    if (books.num_found === 0 && books.q === "") {
+        emtySearch.innerText = `SEARCH FEILD CANN'T BE EMTY,PLEASE WRITE SOMETHING`
         return;
     }
-    else if (singleData.num_found === 0) {
+
+    //catching finding no result according search input value error
+    else if (books.num_found === 0) {
         errorFound.innerText = `OPPS,SORRY!!NO RESULT FOUND.PLEASE SEARCH ACCURATE`
         return;
     }
 
     // console.log(singleResult)
-    const numberIs = singleData.numFound;
+    const numberIs = books.numFound;
     numberShow.innerText = `Total Result Found of is ${numberIs}`
     // console.log(numberIs)
     resultShowA.innerText = `Your Search Result`
-    const docsIs = singleData.docs;
+    const docsIs = books.docs;
 
     docsIs.forEach(singleInfo => {
         console.log(singleInfo.cover_i)
         const div = document.createElement('div');
-        div.classList.add('col-lg-2','mb-4','ms-3','shadow','rounded','Book-details-container')
+        div.classList.add('col-lg-2','col-md-3','col-6', 'mb-4', 'ms-3', 'shadow', 'rounded', 'Book-details-container')
         div.innerHTML = `
 
         <div>
