@@ -10,14 +10,15 @@ const searchResult = () => {
     //fetch data
     fetch(url)
         .then(res => res.json())
-        .then(data => singleResult(data))
+        .then(data => fetchedData(data))
 
-    //clear search field input
+    //clear previous search field input
     searchFieldInput.value = '';
 
-    getDiv.innerHTML = '';
+    //clear all previous result
+    resultContainerDiv.innerHTML = '';
 
-    //clear total number of result  
+    //clear previous total number of result  
     numberShow.innerText = '';
 
     //clear nothing found error warning
@@ -27,15 +28,15 @@ const searchResult = () => {
     emtySearch.innerText = '';
 }
 
-const getDiv = document.getElementById('show-result')
-const numberShow = document.getElementById('total-result')
-const resultShowA = document.getElementById('alart-result')
+const resultContainerDiv = document.getElementById('show-result')
+const totalNumofResult = document.getElementById('total-result')
+const simpleResultShowMessage = document.getElementById('result-message')
 const errorFound = document.getElementById('not-find-error')
 const emtySearch = document.getElementById('emty-error')
-const mainId = document.getElementById('main-id')
+// const mainId = document.getElementById('main-id')
 
-//getting single data by using forEach loop
-const singleResult = books => {
+//declare an arrow function
+const fetchedData = books => {
 
     //catching emty search input result error
     if (books.num_found === 0 && books.q === "") {
@@ -49,33 +50,37 @@ const singleResult = books => {
         return;
     }
 
-    // console.log(singleResult)
-    const numberIs = books.numFound;
-    numberShow.innerText = `Total Result Found of is ${numberIs}`
-    // console.log(numberIs)
-    resultShowA.innerText = `Your Search Result`
-    const docsIs = books.docs;
+   //total result found based on search input
+    const totalResultFound = books.numFound;
+    totalNumofResult.innerText = `Total Result Found of is ${totalResultFound}`
 
-    docsIs.forEach(singleInfo => {
-        console.log(singleInfo.cover_i)
+   //showing a simple message which will
+    simpleResultShowMessage.innerText = `All Search Result`
+
+    //getting an array from fething data
+    const arrayListOfData = books.docs;
+
+    //using forEach to get all single object from given array
+    arrayListOfData.forEach(singleBookInfo => {
+        console.log(singleBookInfo.cover_i)
         const div = document.createElement('div');
         div.classList.add('col-lg-2','col-md-3','col-6', 'mb-4', 'ms-3', 'shadow', 'rounded', 'Book-details-container')
         div.innerHTML = `
 
         <div>
         <div class="text-center p-1 rounded mt-1 mb-1">
-        <img src="https://covers.openlibrary.org/b/id/${singleInfo.cover_i}-M.jpg" class="img-fluid" alt="images not found" >
+        <img src="https://covers.openlibrary.org/b/id/${singleBookInfo.cover_i}-M.jpg" class="img-fluid" alt="images not found" >
         </div>
         <div class="card-details mt-2 mx-auto">
             <h5>Name of the Book:</h5>
-            <p>${singleInfo.title}</P>
+            <p>${singleBookInfo.title}</P>
             <h6>Author By:</h6>
-            <p>${singleInfo.author_name}</p>
-            <p>First Published in:${singleInfo.first_publish_year}</p>
+            <p>${singleBookInfo.author_name}</p>
+            <p>First Published in:${singleBookInfo.first_publish_year}</p>
         </div>
         </div>
        `
-        getDiv.appendChild(div)
+        resultContainerDiv.appendChild(div)
     });
 }
 
