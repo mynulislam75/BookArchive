@@ -1,6 +1,6 @@
 
 //getting,catching and fetching search input value
-const searchResult = () => {
+const searchInput = () => {
     const searchFieldInput = document.getElementById('search-feild');
     const searchFieldValue = searchFieldInput.value;
 
@@ -50,13 +50,13 @@ const fetchedData = books => {
 
     //catching finding no result according search input value error
     else if (books.num_found === 0) {
-        errorFound.innerText = `OPPS,SORRY!!NO RESULT FOUND.PLEASE SEARCH ACCURATE`
+        errorFound.innerText = `No Result Found`
         return;
     }
 
    //total result found based on search input
     const totalResultFound = books.numFound;
-    totalNumofResult.innerText = `Total Result Found of is ${totalResultFound}`
+    totalNumofResult.innerText = `Total ${totalResultFound} result is founded of your search`
 
    //showing a simple message which will
     simpleResultShowMessage.innerText = `All Search Result`
@@ -66,7 +66,7 @@ const fetchedData = books => {
 
     //using forEach to get all single object from given array
     arrayListOfData.forEach(singleBookInfo => {
-        console.log(singleBookInfo.cover_i)
+        console.log(singleBookInfo.publisher)
         const div = document.createElement('div');
         div.classList.add('col-lg-2','col-md-3','col-6', 'mb-4', 'ms-3', 'shadow', 'rounded', 'Book-details-container')
         div.innerHTML = `
@@ -76,10 +76,12 @@ const fetchedData = books => {
         <img src="https://covers.openlibrary.org/b/id/${singleBookInfo.cover_i}-M.jpg" class="img-fluid" alt="images not found" >
         </div>
         <div class="card-details mt-2 mx-auto">
-            <h5>Name of the Book:</h5>
+            <h5>Book Name:</h5>
             <p>${singleBookInfo.title}</P>
             <h6>Author By:</h6>
             <p>${singleBookInfo.author_name}</p>
+            <h6>Publisher:</h6>
+            <p class="overflow-visible">${singleBookInfo.publisher}</p>
             <p>First Published in:${singleBookInfo.first_publish_year}</p>
         </div>
         </div>

@@ -1,9 +1,10 @@
 
-
+/* adding hover effect on result card */
 .Book-details-container:hover{
     border:1px solid skyblue;
 }
 
+/* adding some style on all result details */
 .result-details-section{
     text-align: center;
     margin-left: 40px;
