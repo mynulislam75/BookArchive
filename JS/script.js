@@ -4,6 +4,7 @@
 const searchResult = () => {
     const searchFieldInput = document.getElementById('search-feild');
     const searchFieldValue = searchFieldInput.value;
+    // console.log(searchFieldValue)
     const url = ` http://openlibrary.org/search.json?q=${searchFieldValue}`
 
     //fetch data
@@ -27,14 +28,18 @@ const emtyResult=document.getElementById('emty')
 
 //getting single data by using forEach loop
 const singleResult = singleData => {
-    if (singleData.num_found === 0) {
-        errorFound.innerText=`OPPS,SORRY!!NO RESULT FOUND`
+    if(singleData.num_found === 0 && singleData.q===""){
+        emtyResult.innerText=`SEARCH FEILD CANN'T BE EMTY,PLEASE WRITE SOMETHING`
+        return;
+    }
+    else if (singleData.num_found === 0) {
+        errorFound.innerText=`OPPS,SORRY!!NO RESULT FOUND.PLEASE SEARCH ACCURATE`
         return;
     }
 
-    console.log(singleResult)
+    // console.log(singleResult)
     const numberIs = singleData.numFound;
-    numberShow.innerText = `total found is ${numberIs}`
+    numberShow.innerText = `Total Result Found of is ${numberIs}`
     // console.log(numberIs)
     resultShowA.innerText=`Your Search Result`
     const docsIs = singleData.docs;
