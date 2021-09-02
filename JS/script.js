@@ -16,24 +16,27 @@ const searchResult = () => {
     searchFieldInput.value = '';
     getDiv.innerHTML = '';
     numberShow.innerText = '';
-    errorFound.innerText='';
-    emtyResult.innerText='';
+    errorFound.innerText = '';
+    emtyResult.innerText = '';
+    mainId.style.backgroundColor = ''
 }
 
 const getDiv = document.getElementById('show-result')
 const numberShow = document.getElementById('number')
-const resultShowA=document.getElementById('alart-result')
-const errorFound=document.getElementById('error')
-const emtyResult=document.getElementById('emty')
+const resultShowA = document.getElementById('alart-result')
+const errorFound = document.getElementById('error')
+const emtyResult = document.getElementById('emty')
+const mainId = document.getElementById('main-id')
 
 //getting single data by using forEach loop
 const singleResult = singleData => {
-    if(singleData.num_found === 0 && singleData.q===""){
-        emtyResult.innerText=`SEARCH FEILD CANN'T BE EMTY,PLEASE WRITE SOMETHING`
+    if (singleData.num_found === 0 && singleData.q === "") {
+        mainId.style.backgroundColor = "red"
+        emtyResult.innerText = `SEARCH FEILD CANN'T BE EMTY,PLEASE WRITE SOMETHING`
         return;
     }
     else if (singleData.num_found === 0) {
-        errorFound.innerText=`OPPS,SORRY!!NO RESULT FOUND.PLEASE SEARCH ACCURATE`
+        errorFound.innerText = `OPPS,SORRY!!NO RESULT FOUND.PLEASE SEARCH ACCURATE`
         return;
     }
 
@@ -41,25 +44,29 @@ const singleResult = singleData => {
     const numberIs = singleData.numFound;
     numberShow.innerText = `Total Result Found of is ${numberIs}`
     // console.log(numberIs)
-    resultShowA.innerText=`Your Search Result`
+    resultShowA.innerText = `Your Search Result`
     const docsIs = singleData.docs;
-    // const img=docsIs.cover_i;
-    // console.log(img)
 
     docsIs.forEach(singleInfo => {
         console.log(singleInfo.cover_i)
         const div = document.createElement('div');
-        div.classList.add('col-lg-2', 'm-3', 'p-3', 'shadow-lg-2', 'col-md-3', 'col-sm-6', 'rounded')
+        div.classList.add('col-lg-2','mb-4','ms-3','shadow','rounded','Book-details-container')
         div.innerHTML = `
-        <div class="card w-100 h-100">
-        <img src="https://covers.openlibrary.org/b/id/${singleInfo.cover_i}-M.jpg" class="img-fluid" alt="images not found">
-        <div class="card-body m-3">
-            <h4 class="book-title">Book Name:${singleInfo.title}</h4>
-            <h5 class="author-title">Author:${singleInfo.author_name}</h5>
-            <p class="card-text">First Published:${singleInfo.first_publish_year}</p>
+
+        <div>
+        <div class="text-center p-1 rounded mt-1 mb-1">
+        <img src="https://covers.openlibrary.org/b/id/${singleInfo.cover_i}-M.jpg" class="img-fluid" alt="images not found" >
+        </div>
+        <div class="card-details mt-2 mx-auto">
+            <h5>Name of the Book:</h5>
+            <p>${singleInfo.title}</P>
+            <h6>Author By:</h6>
+            <p>${singleInfo.author_name}</p>
+            <p>First Published in:${singleInfo.first_publish_year}</p>
         </div>
         </div>
        `
         getDiv.appendChild(div)
     });
 }
+
