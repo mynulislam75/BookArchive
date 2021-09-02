@@ -5,7 +5,7 @@ const searchInput = () => {
     const searchFieldValue = searchFieldInput.value;
 
     //creating dymanic url using search feild input
-    const url = ` http://openlibrary.org/search.json?q=${searchFieldValue}`
+    const url = ` https://openlibrary.org/search.json?q=${searchFieldValue}`
 
     //fetch data
     fetch(url)
