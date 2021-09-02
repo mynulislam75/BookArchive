@@ -19,13 +19,16 @@ const searchResult = () => {
     resultContainerDiv.innerHTML = '';
 
     //clear previous total number of result  
-    numberShow.innerText = '';
+    totalNumofResult.innerText = '';
 
     //clear nothing found error warning
     errorFound.innerText = '';
 
     //clear emty search error warning
     emtySearch.innerText = '';
+
+    simpleResultShowMessage.innerText='';
+    // errorSection.innerHTML='';
 }
 
 const resultContainerDiv = document.getElementById('show-result')
@@ -33,7 +36,8 @@ const totalNumofResult = document.getElementById('total-result')
 const simpleResultShowMessage = document.getElementById('result-message')
 const errorFound = document.getElementById('not-find-error')
 const emtySearch = document.getElementById('emty-error')
-// const mainId = document.getElementById('main-id')
+const mainId = document.getElementById('main-id')
+const errorSection=document.getElementById('error-contaoner-section')
 
 //declare an arrow function
 const fetchedData = books => {

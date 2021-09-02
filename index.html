@@ -24,6 +24,7 @@
             <div class="input-group w-50 h-100">
                 <input type="text" id="search-feild" class="form-control" placeholder="Search your book"
                     aria-label="Recipient's username" aria-describedby="button-addon2">
+
                 <button class="btn btn-outline-white text-light bg-danger" type="button" onclick="searchResult()"
                     id="search-button">Search</button>
             </div>
@@ -36,9 +37,9 @@
 
 
         <!-- error message showing section -->
-        <section class="container mx-auto">
+        <section class="container mx-auto" id="error-contaoner-section">
             <p id="not-find-error" class="text-danger fs-4"></p>
-            <p id="emty-error" class="text-danger fs-4"></p>
+            <p id="emty-error" class="text-red fs-4"></p>
         </section>
 
 
