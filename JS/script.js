@@ -56,7 +56,7 @@ const fetchedData = books => {
 
    //total result found based on search input
     const totalResultFound = books.numFound;
-    totalNumofResult.innerText = `Total ${totalResultFound} result is founded of your search`
+    totalNumofResult.innerText = `Total ${totalResultFound} result is find of your result `
 
    //showing a simple message which will
     simpleResultShowMessage.innerText = `All Search Result`
